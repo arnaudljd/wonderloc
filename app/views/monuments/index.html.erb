@@ -1,1 +1,23 @@
-<h1>🗼 Hello, welcome to WONDERLOC 🗼</h1>
+<nav class="navbar bg-body-tertiary">
+  <div class="container-fluid border-top border-bottom border-1 py-3">
+    <a class="navbar-brand">Wonderloc</a>
+    <form class="d-flex" role="search">
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+      <button type="button" class="btn btn-outline-success">Search</button>
+    </form>
+  </div>
+</nav>
+
+<div class="cards">
+  <% @monuments.each do |monument| %>
+    <div class="card shadow mb-5 bg-body rounded" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title"><%= monument.name %></h5>
+        <p class="card-text"><%= monument.address %></p>
+        <div class="d-flex inline-block justify-content-between">
+          <p class="card-text">$<%= monument.price %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
