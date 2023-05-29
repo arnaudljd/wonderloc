@@ -1,0 +1,18 @@
+<h1><%= @monument.name %></h1>
+<ul>
+  <li><%= @monument.reviews.lenght %> reviews</li>
+  <li><%= @monument.address %></li>
+</ul>
+<div>
+  <% @monument.picture.each do |picture| %>
+  <%= image_tag (""), class: "img-responsive"%>
+  <% end %>
+</div>
+
+<p>Owner: <%= @monumen.user_id.username %></p>
+<p><%= @monument.description %></p>
+
+<div>
+  <p><%= @monument.price %></p>
+  <p><%= @monument.availability %></p>
+</div>
