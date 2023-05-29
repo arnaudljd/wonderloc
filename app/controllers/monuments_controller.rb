@@ -1,5 +1,5 @@
 class MonumentsController < ApplicationController
-  before_action :set_monument, only: {:show}
+  before_action :set_monument, only: [:show]
 
 
   def index
@@ -20,7 +20,7 @@ class MonumentsController < ApplicationController
   private
 
   def set_monument
-    @monument = Monument.find[:id]
+    @monument = Monument.find(params[:id])
   end
 
   def params_monument
