@@ -5,11 +5,7 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-puts "Cleaning database..."
-User.destroy_all
-Monument.destroy_all
 
-puts "Creating new data..."
 10.times do
   User.create!(
     first_name: Faker::Name.first_name,
@@ -29,5 +25,3 @@ end
     user_id: rand(1..10)
   )
 end
-
-puts "Finish!"
