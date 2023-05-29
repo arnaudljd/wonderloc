@@ -1,6 +1,5 @@
 class MonumentsController < ApplicationController
-  before_action :set_monument, only: [:show]
-
+  before_action :set_monument, only: [:show, :edit, :update, :destroy]
 
   def index
     @monuments = Monument.all
@@ -14,7 +13,28 @@ class MonumentsController < ApplicationController
   end
 
   def create
-    @monument = Monument.new(params_monument)
+    @monument = Monument.new(monument_params)
+    if @monument.save
+      redirect_to @monument, notice: "Monument was successfully created."
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @monument.update(monument_params)
+      redirect_to @monument, notice: "Monument was successfully updated."
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @monument.destroy
+    redirect_to monuments_path, notice: "Monument was successfully destroyed."
   end
 
   private
@@ -23,7 +43,7 @@ class MonumentsController < ApplicationController
     @monument = Monument.find(params[:id])
   end
 
-  def params_monument
+  def monument_params
     params.require(:monument).permit(:name, :picture, :price, :description, :address, :availability)
   end
 end
