@@ -1,0 +1,13 @@
+<h2>Add a monument</h2>
+<%= simple_form_for(@monument) do |m| %>
+  <%= m.input :name %>
+  <%# Upload de l'image à terminer %>
+  <%#= m.input :picture as: :file %>
+  <%= m.input :price %>
+  <%= m.input :description %>
+  <%= m.input :address %>
+  <%# Availability à afficher sous forme de calendrier à sélection multiple %>
+  <%= m.input :availability %>
+  <%= m.submit %>
+<% end %>
+<p><%= link_to 'Back to list', monuments_path %></p>
