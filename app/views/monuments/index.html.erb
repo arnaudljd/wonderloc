@@ -2,7 +2,10 @@
   <% @monuments.each do |monument| %>
     <%= link_to monument_path(monument), class: "text-decoration-none link-dark" do %>
       <div class="card-monument">
-        <img src="<%= monument.picture %>", class="rounded-4" />
+         <% monument.photos.each do |photo| %>
+              <%= cl_image_tag(photo.key, width: 400, height: 300, crop: :fill) %>
+          <% end %>
+
         <div class="card-monument-infos">
           <div>
             <h2><%= monument.name %></h2>

@@ -6,10 +6,12 @@
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
       </div>
-      <% if @monument.picture != nil %>
+      <% if @monument.photos != nil %>
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="<%= @monument.picture%>" class="d-block -30em" alt="...">
+            <% @monument.photos.each do |photo| %>
+              <%= cl_image_tag(photo.key, width: 400, height: 300, crop: :fill) %>
+            <% end %>
           </div>
       <% end %>
       <%# if @monument.picture.length = 2 %>
