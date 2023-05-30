@@ -41,9 +41,15 @@
         <h1><%= @monument.name %></h1>
         <div data-controller="toggle">
           <button data-action="click->toggle#fire" class="btn btn-primary mt-3 col-3">Book</button>
-          <div data-toggle-target="togglableElement" class="d-none">
-            <%= render "shared/form", booking: @booking %>
-          </div>
+          <% if @booking.errors.any? %>
+            <div data-toggle-target="togglableElement">
+              <%= render "shared/form", monument: @monument, booking: @booking %>
+            </div>
+          <% else %>
+            <div data-toggle-target="togglableElement" class="d-none">
+              <%= render "shared/form", monument: @monument, booking: @booking %>
+            </div>
+          <% end %>
         </div>
         <p><%= @monument.description %></p>
       </div>

@@ -1,9 +1,9 @@
 <div class="cards">
   <% @monuments.each do |monument| %>
-    <%= link_to monument_path(monument), class: "text-decoration-none link-dark" do %>
+    <%= link_to monument_path(monument), class: "text-decoration-none link-dark mb-3" do %>
       <div class="card-monument">
          <% monument.photos.each do |photo| %>
-              <%= cl_image_tag(photo.key, width: 400, height: 300, crop: :fill) %>
+              <%= cl_image_tag(photo.key, width: 400, height: 300, crop: :fill, class: "rounded-4") %>
           <% end %>
 
         <div class="card-monument-infos">
@@ -16,7 +16,6 @@
               <h2 class="card-monument-pricing"><strong>$<%= monument.price %></strong><em> per night</em></h2>
             </div>
           </div>
-          <h2 class="card-monument-pricing">$<%= monument.price %></h2>
         </div>
       </div>
     <% end %>
