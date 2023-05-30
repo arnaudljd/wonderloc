@@ -10,7 +10,6 @@
 
   h2 {
     font-size: 16px;
-    font-weight: bold;
     margin: 0;
   }
 
@@ -27,5 +26,11 @@
     align-items: flex-end;
     position: relative;
     padding-inline: 0px;
+  }
+
+  .card-monument-pricing{
+    position: absolute;
+    bottom: 0;
+    right: 0;
   }
 }
