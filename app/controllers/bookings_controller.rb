@@ -1,5 +1,3 @@
-require 'date'
-
 class BookingsController < ApplicationController
   before_action :set_booking, only: [:show, :edit, :update]
 
