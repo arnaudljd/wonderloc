@@ -1,0 +1,48 @@
+<h1>Bookings</h1>
+
+<h3>Mes réservations futures</h3>
+
+<% @bookings.each do |booking| %>
+  <% if booking.start_date > Date.today %>
+    <div class="card-product">
+      <%#= cl_image_tag(booking.photo.key, width: 400, height: 300, crop: :fill) %>
+      <div class="card-product-infos">
+        <h2><%= booking.monument.name %></h2>
+        <p><%= booking.start_date %> au <%= booking.end_date %></p>
+        <p><%= booking.total_price %> €</p>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+
+<hr>
+
+<h3>Mes anciennes réservations</h3>
+
+<% @bookings.each do |booking| %>
+  <% if booking.start_date < Date.today %>
+    <div class="card-product">
+      <%#= cl_image_tag(booking.monument.photo.key, width: 400, height: 300, crop: :fill) %>
+      <div class="card-product-infos">
+        <h2><%= booking.monument.name %></h2>
+        <p><%= booking.start_date %> au <%= booking.end_date %></p>
+        <p><%= booking.total_price %> €</p>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+
+<hr>
+
+<h3>Mes monuments</h3>
+<% if @monuments != nil %>
+  <% @monuments.each do |monument| %>
+    <div class="card-product">
+      <%#= cl_image_tag(photo.key, width: 400, height: 300, crop: :fill) %>
+      <div class="card-product-infos">
+        <h2><%= monument.name %></h2>
+        <%#= link_to 'booking',  %>
+      </div>
+    </div>
+  <% end %>
+<% end %>
