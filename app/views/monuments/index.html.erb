@@ -1,12 +1,13 @@
 <div class="cards">
   <% @monuments.each do |monument| %>
-    <div class="card shadow mb-5 bg-body rounded" style="width: 18rem;">
-      <div class="card-body">
-        <h5 class="card-title"><%= monument.name %></h5>
-        <p class="card-text"><%= monument.address %></p>
-        <div class="d-flex inline-block justify-content-between">
-          <p class="card-text">$<%= monument.price %></p>
+    <div class="card-monument rounded-4">
+      <img src="<%= monument.picture %>" />
+      <div class="card-monument-infos">
+        <div>
+          <h2><%= monument.name %></h2>
+          <p><%= monument.address %></p>
         </div>
+        <h2 class="card-monument-pricing">$<%= monument.price %></h2>
       </div>
     </div>
   <% end %>
