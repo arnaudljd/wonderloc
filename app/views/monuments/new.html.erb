@@ -1,8 +1,8 @@
 <h2>Add a monument</h2>
 <%= simple_form_for(@monument) do |m| %>
   <%= m.input :name %>
-  <%# Upload de l'image à terminer %>
-  <%#= m.input :picture as: :file %>
+  <%= m.input :picture %>
+  <%= m.input :photos, as: :file, input_html: { multiple: true } %>
   <%= m.input :price %>
   <%= m.input :description %>
   <%= m.input :address %>
