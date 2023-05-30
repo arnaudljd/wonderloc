@@ -15,6 +15,7 @@ class MonumentsController < ApplicationController
 
   def create
     @monument = Monument.new(monument_params)
+    @monument.user = current_user
     if @monument.save
       redirect_to @monument, notice: "Monument was successfully created."
     else
