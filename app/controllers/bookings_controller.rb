@@ -13,13 +13,14 @@ class BookingsController < ApplicationController
   end
 
   def create
-    @monument = Monument.find(params[:id])
+    @monument = Monument.find(params[:monument_id])
     @booking = Booking.new(booking_params)
     @booking.monument = @monument
+    @booking.user = current_user
     if @booking.save
       redirect_to monument_path(@monument)
     else
-      render :new, status: :unprocessable_entity
+      render 'monuments/show', status: :unprocessable_entity
     end
   end
 
