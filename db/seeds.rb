@@ -26,7 +26,7 @@ puts "#{User.all.length} users created"
 10.times do
   Monument.create!(
     name: Faker::Mountain.name,
-    picture: 'https://picsum.photos/750/300',
+    photos: ['https://picsum.photos/750/300'],
     price: rand(1_000..1_000_000),
     address: Faker::Address.full_address,
     user_id: rand(1..10),
