@@ -5,6 +5,11 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+puts 'cleaning the DB'
+User.destroy_all
+Monument.destroy_all
+
+puts 'creating the new DB'
 
 10.times do
   User.create!(
@@ -16,6 +21,8 @@
   )
 end
 
+puts "#{User.all.length} users created"
+
 10.times do
   Monument.create!(
     name: Faker::Mountain.name,
@@ -23,6 +30,9 @@ end
     price: rand(1_000..1_000_000),
     address: Faker::Address.full_address,
     user_id: rand(1..10),
-    description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries"
+    description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries",
+    rate: rand(1..5)
   )
 end
+
+puts "#{Monument.all.length} monuments created"
