@@ -15,6 +15,7 @@ class MonumentsController < ApplicationController
 
   def create
     @monument = Monument.new(monument_params)
+    @monument.user = current_user
     if @monument.save
       redirect_to @monument, notice: "Monument was successfully created."
     else
@@ -45,6 +46,6 @@ class MonumentsController < ApplicationController
   end
 
   def monument_params
-    params.require(:monument).permit(:name, :picture, :price, :description, :address, :availability)
+    params.require(:monument).permit(:name, :picture, :price, :description, :address, :availability, photos: [])
   end
 end
