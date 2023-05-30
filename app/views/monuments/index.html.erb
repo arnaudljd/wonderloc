@@ -1,14 +1,16 @@
 <div class="cards">
   <% @monuments.each do |monument| %>
-    <div class="card-monument">
-      <img src="<%= monument.picture %>", class="rounded-4" />
-      <div class="card-monument-infos">
-        <div>
-          <h2><%= monument.name %></h2>
-          <p><%= monument.address %></p>
+    <%= link_to monument_path(monument), class: "text-decoration-none link-dark" do %>
+      <div class="card-monument">
+        <img src="<%= monument.picture %>", class="rounded-4" />
+        <div class="card-monument-infos">
+          <div>
+            <h2><%= monument.name %></h2>
+            <p><%= monument.address %></p>
+          </div>
+          <h2 class="card-monument-pricing">$<%= monument.price %></h2>
         </div>
-        <h2 class="card-monument-pricing">$<%= monument.price %></h2>
       </div>
-    </div>
+    <% end %>
   <% end %>
 </div>
