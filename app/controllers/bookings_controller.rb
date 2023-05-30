@@ -1,3 +1,5 @@
+require 'date'
+
 class BookingsController < ApplicationController
   before_action :set_booking, only: [:show, :edit, :update]
 
@@ -17,6 +19,9 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     @booking.monument = @monument
     @booking.user = current_user
+    @booking.booked_at = Date.today
+    @booking.status = 'Pending'
+    @booking.total_price = (params[:booking][:end_date].to_date - params[:booking][:start_date].to_date).to_i * @monument.price
     if @booking.save
       redirect_to monument_path(@monument)
     else
