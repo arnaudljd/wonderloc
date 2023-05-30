@@ -1,11 +1,12 @@
 <h2>Add a monument</h2>
 <%= simple_form_for(@monument) do |m| %>
   <%= m.input :name %>
-  <%= m.input :picture %>
   <%= m.input :photos, as: :file, input_html: { multiple: true } %>
   <%= m.input :price %>
   <%= m.input :description %>
-  <%= m.input :address %>
+  <%= m.input :country, as: :select, collection: @countries %>
+  <%= m.input :city %>
+  <%= m.input :address_details %>
   <%= m.submit %>
 <% end %>
 <p><%= link_to 'Back to list', monuments_path %></p>
