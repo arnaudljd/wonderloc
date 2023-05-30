@@ -1,7 +1,7 @@
 <div class="cards">
   <% @monuments.each do |monument| %>
-    <div class="card-monument rounded-4">
-      <img src="<%= monument.picture %>" />
+    <div class="card-monument">
+      <img src="<%= monument.picture %>", class="rounded-4" />
       <div class="card-monument-infos">
         <div>
           <h2><%= monument.name %></h2>
