@@ -31,8 +31,10 @@ puts "#{User.all.length} users created"
     name: Faker::Mountain.name,
     picture: 'https://picsum.photos/750/300',
     price: rand(1_000..1_000_000),
-    address: Faker::Address.full_address,
-    user_id: User.all.sample.id,
+    country: Faker::Address.country,
+    city: Faker::Address.city,
+    address_details: Faker::Address.street_address,
+    user_id: rand(1..10),
     description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries",
     rate: rand(1..5)
   )
