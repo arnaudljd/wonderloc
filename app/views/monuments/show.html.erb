@@ -36,6 +36,12 @@
     <div class="row justify-content-between p-2">
       <div class="col-8 mt-3">
         <h1><%= @monument.name %></h1>
+        <div data-controller="toggle">
+          <button data-action="click->toggle#fire" class="btn btn-primary mt-3 col-3">Book</button>
+          <div data-toggle-target="togglableElement" class="d-none">
+            <%= render "shared/form", booking: @booking %>
+          </div>
+        </div>
         <p><%= @monument.description %></p>
       </div>
       <div class="col-3 m-1 pt-2 border border-secondary rounded text-end ">
@@ -51,4 +57,5 @@
     <%= @monument.user.username %>
     <%= @monument.address %>
   </div>
+
 </div>

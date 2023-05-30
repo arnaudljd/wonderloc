@@ -7,6 +7,8 @@ class MonumentsController < ApplicationController
   end
 
   def show
+    @booking = Booking.new
+    @booking.monument = @monument
   end
 
   def new

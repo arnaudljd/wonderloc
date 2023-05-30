@@ -1,0 +1,9 @@
+<%= simple_form_for (booking) do |b| %>
+  <%= b.input :start_date,
+              as: :string,
+              input_html: { data: { controller: "datepicker" } } %>
+  <%= b.input :end_date,
+              as: :string,
+              input_html: { data: { controller: "datepicker" } } %>
+  <%= b.submit %>
+<% end %>
