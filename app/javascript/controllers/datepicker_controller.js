@@ -17,10 +17,16 @@ export default class extends Controller {
     })
 
     flatpickr(this.endTarget, {
-        minDate: "today",
-        disable: this.#dateBooked()
+      minDate: "today",
+      disable: this.#dateBooked()
     })
-    console.log(this.bookingValue);
+  }
+
+  endDate() {
+    flatpickr(this.endTarget, {
+      minDate: new Date(Date.parse(this.startTarget.value) + 86_400_000).toISOString().slice(0, 10),
+      disable: this.#dateBooked()
+    })
   }
 
   #dateBooked() {
@@ -28,7 +34,7 @@ export default class extends Controller {
     this.bookingValue.forEach((booking) => {
       const date = {
         from: booking.start_date,
-        to: booking.end_date
+        to: new Date(Date.parse(booking.end_date) - 86_400_000).toISOString().slice(0, 10)
       }
       array.push(date)
     })
@@ -36,12 +42,18 @@ export default class extends Controller {
   }
 
   checkDates() {
+    let a = []
     this.bookingValue.forEach((booking) => {
-        if (booking.start_date >= this.startTarget.value && booking.end_date <= this.endTarget.value) {
-          this.subTarget.disabled = true
-        } else {
-          this.subTarget.disabled = false
-        }
+      if (booking.start_date >= this.startTarget.value && booking.end_date <= this.endTarget.value) {
+        a.push(true)
+      } else {
+        a.push(false)
+      }
     })
+    if (a.find(element => element == true) || this.startTarget.value >= this.endTarget.value) {
+      this.subTarget.disabled = true
+    } else {
+      this.subTarget.disabled = false
+    }
   }
 }

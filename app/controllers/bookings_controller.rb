@@ -18,7 +18,9 @@ class BookingsController < ApplicationController
     @booking.user = current_user
     @booking.booked_at = Date.today
     @booking.status = 'Pending'
-    @booking.total_price = (params[:booking][:end_date].to_date - params[:booking][:start_date].to_date).to_i * @monument.price
+    if !params[:booking][:start_date].to_date.nil? && !params[:booking][:end_date].to_date.nil?
+      @booking.total_price = (params[:booking][:end_date].to_date - params[:booking][:start_date].to_date).to_i * @monument.price
+    end
     if @booking.save
       redirect_to dashboard_path(current_user)
     else
