@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "monuments#index"
 
-  get :dashboards, to: 'dashboards#profile'
+  get :dashboards, to: 'dashboards#profile', as: :dashboard
 
   resources :monuments do
     resources :bookings, only: ['new', 'create']
