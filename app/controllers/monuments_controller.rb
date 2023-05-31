@@ -20,7 +20,7 @@ class MonumentsController < ApplicationController
     @monument = Monument.new(monument_params)
     @monument.user = current_user
     if @monument.save
-      redirect_to @monument, notice: "Monument was successfully created."
+      redirect_to dashboard_path(current_user), notice: "Monument was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
