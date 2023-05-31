@@ -37,11 +37,10 @@ export default class extends Controller {
 
   checkDates() {
     this.bookingValue.forEach((booking) => {
-        if (this.startTarget.value >= booking.start_date && this.endTarget.value <= booking.end_date) {
-          this.subTarget.disabled = false
-        }
         if (booking.start_date >= this.startTarget.value && booking.end_date <= this.endTarget.value) {
           this.subTarget.disabled = true
+        } else {
+          this.subTarget.disabled = false
         }
     })
   }
