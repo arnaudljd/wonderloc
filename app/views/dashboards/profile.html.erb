@@ -1,6 +1,6 @@
 <h1 class='text-center'><%= current_user.username.capitalize %>'s dashboard</h1>
 
-<h3>Futures bookings</h3>
+<h3>Future bookings</h3>
 
 <% if @future_bookings != []%>
   <% @future_bookings.each do |booking| %>
@@ -75,21 +75,29 @@
   </div>
 <%end%>
 
-<% if @monuments != [] %>
-  <hr>
-  <h3>Mes monuments</h3>
-  <div class="row">
-    <% @monuments.each do |monument| %>
-      <div class="link col-6">
-        <%= link_to monument_path(monument), class: "text-decoration-none link-dark mx-auto mb-3" do %>
-          <div class="card-product">
-            <%= cl_image_tag(monument.photos.first.key, width: 400, height: 300, crop: :fill) %>
-            <div class="card-product-infos">
-              <h2><%= monument.name %></h2>
+  <% if @monuments != [] %>
+    <hr>
+    <div class="d-flex justify-content-between mb-3">
+      <h3>My monuments</h3>
+      <%= link_to 'add a new monument', new_monument_path, class:"btn btn-outline-success" %>
+    </div>
+    <div class="row">
+      <% @monuments.each do |monument| %>
+        <div class="link col-6">
+          <%= link_to monument_path(monument), class: "text-decoration-none link-dark mx-auto mb-3" do %>
+            <div class="card-product">
+              <%= cl_image_tag(monument.photos.first.key, width: 400, height: 300, crop: :fill) %>
+              <div class="card-product-infos">
+                <h2><%= monument.name %></h2>
+              </div>
             </div>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
-<% end %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <hr>
+    <h3>My monuments</h3>
+    <h5 class= "text-center">You don't have any monument</h5>
+    <p class= "text-center"> <%= link_to 'Click here to add a new monument', new_monument_path %> </p>
+  <% end %>
