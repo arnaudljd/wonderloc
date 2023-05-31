@@ -1,9 +1,26 @@
 <nav class="navbar bg-body-tertiary">
   <div class="container-fluid border-top border-bottom border-1 py-3">
     <%= link_to "Wonderloc", root_path, class: "navbar-brand" %>
-    <form class="d-flex" role="search">
-      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-      <button type="button" class="btn btn-outline-success">Search</button>
-    </form>
+    <div>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button type="button" class="btn btn-outline-success">Search</button>
+        <div class="ms-2">
+          <ul class="navbar-nav me-auto">
+            <% if user_signed_in? %>
+              <li class="nav-item dropdown">
+                <%= cl_image_tag current_user.photo.key, id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false, class: "avatar dropdown-toggle" %>
+                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                  <%= link_to "My bookings", dashboards_path, class: "dropdown-item" %>
+                  <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
+                </div>
+              </li>
+            <% else %>
+              <li><%= link_to "Login", new_user_session_path, class: "btn btn-outline-dark" %></li>
+            <% end %>
+          </ul>
+        </div>
+      </form>
+    </div>
   </div>
 </nav>
