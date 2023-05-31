@@ -5,5 +5,5 @@
   <%= b.input :end_date,
               as: :string,
               input_html: { data: { datepicker_target: "end", action: "change->datepicker#checkDates" } } %>
-  <%= b.submit 'Submit', disabled: true, data: { datepicker_target: "sub" } %>
+  <%= b.submit 'Submit', disabled: false, data: { datepicker_target: "sub" } %>
 <% end %>

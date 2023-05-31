@@ -20,7 +20,7 @@ class BookingsController < ApplicationController
     @booking.status = 'Pending'
     @booking.total_price = (params[:booking][:end_date].to_date - params[:booking][:start_date].to_date).to_i * @monument.price
     if @booking.save
-      redirect_to dashboards_path(current_user)
+      redirect_to dashboard_path(current_user)
     else
       render 'monuments/show', status: :unprocessable_entity
     end
