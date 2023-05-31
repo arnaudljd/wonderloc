@@ -1,54 +1,95 @@
-<h1>Bookings</h1>
+<h1 class='text-center'><%= current_user.username.capitalize %>'s dashboard</h1>
 
-<h3>Mes réservations futures</h3>
-<% @bookings.each do |booking| %>
-  <% if booking.start_date > Date.today %>
-    <%= link_to monument_path(booking.monument_id), class: "text-decoration-none link-dark mb-3" do %>
-      <div class="card-product">
-        <%= cl_image_tag(booking.monument.photos.first.key, width: 400, height: 300, crop: :fill) %>
-        <div class="card-product-infos">
-          <h2><%= booking.monument.name %></h2>
-          <p><%= booking.start_date %> au <%= booking.end_date %></p>
-          <p><%= booking.total_price %> €</p>
-        </div>
-      </div>
-    <% end %>
-  <% end %>
-<% end %>
+<h3>Futures bookings</h3>
 
-<hr>
-
-<h3>Mes anciennes réservations</h3>
-
-<div class="row">
-  <% @bookings.each do |booking| %>
-    <%= link_to monument_path(booking.monument_id), class: "text-decoration-none link-dark mb-3" do %>
-      <% if booking.start_date < Date.today %>
-        <div class="card-product col-5">
-          <%= cl_image_tag(booking.monument.photos.first.key, width: 400, height: 300, crop: :fill) %>      <div class="card-product-infos">
-            <h2><%= booking.monument.name %></h2>
-            <p><%= booking.start_date %> au <%= booking.end_date %></p>
-            <p><%= booking.total_price %> $</p>
+<% if @future_bookings != []%>
+  <% @future_bookings.each do |booking| %>
+    <% if booking.start_date >= Date.today %>
+      <%= link_to monument_path(booking.monument_id), class: "text-decoration-none link-dark mb-3" do %>
+        <div class="card-product mb-3">
+          <%= cl_image_tag(booking.monument.photos.first.key, width: 400, height: 300, crop: :fill) %>
+          <div class="card-product-infos">
+            <div>
+              <h2><%= booking.monument.name %></h2>
+              <p><%= booking.start_date %> au <%= booking.end_date %></p>
+              <p><%= booking.total_price %> €</p>
+            </div>
+            <% if booking.status == 'Accepted' %>
+              <span class="badge bg-success">Accepted</span>
+            <% elsif booking.status == 'Pending' %>
+              <span class="badge bg-warning">Pending</span>
+            <% else %>
+              <span class="badge bg-danger">Rejected</span>
+            <% end %>
           </div>
         </div>
       <% end %>
     <% end %>
   <% end %>
-</div>
+<% else %>
+  <h5 class= "text-center">You don't have any reservation</h5>
+  <p class= "text-center"> <%= link_to 'Click here to start your experience', monuments_path %> </p>
+<% end %>
 
-<hr>
-
-<h3>Mes monuments</h3>
-<% if @monuments != nil %>
-  <% @monuments.each do |monument| %>
+<% if @demands != [] %>
+  <hr>
+  <h3>My monument's requests</h3>
   <div class="row">
-    <div class="card-product col-5">
-      <%= cl_image_tag(monument.photos.first.key, width: 400, height: 300, crop: :fill) %>
-      <div class="card-product-infos">
-        <h2><%= monument.name %></h2>
-        <%#= link_to 'booking',  %>
+    <% @demands.each do |demand| %>
+      <div class="link col-6">
+        <%#= link_to monument_path(monument), class: "text-decoration-none link-dark mx-auto mb-3" do %>
+          <div class="card-product">
+            <%#= cl_image_tag(demands.monument.photos.first.key, width: 400, height: 300, crop: :fill) %>
+            <div class="card-product-infos">
+              <h2><%= demand.monument.name %></h2>
+              <p><%= demand.start_date %> au <%= demand.end_date %></p>
+              <p><%= demand.user.username %></p>
+            </div>
+          </div>
+        <%# end %>
       </div>
-    </div>
+    <% end %>
   </div>
-  <% end %>
+<% end %>
+
+<% if @passed_bookings != []%>
+  <hr>
+  <h3>Passed bookings</h3>
+  <div class="row">
+    <% @passed_bookings.each do |booking| %>
+        <% if booking.end_date < Date.today %>
+        <div class="link col-6">
+          <%= link_to monument_path(booking.monument_id), class: "text-decoration-none link-dark mx-auto mb-3" do %>
+          <div class="card-product" >
+            <%= cl_image_tag(booking.monument.photos.first.key, width: 400, height: 300, crop: :fill) %>
+            <div class="card-product-infos">
+              <h2><%= booking.monument.name %></h2>
+              <p><%= booking.start_date %> au <%= booking.end_date %></p>
+              <p><%= booking.total_price %> $</p>
+            </div>
+          </div>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+<%end%>
+
+<% if @monuments != [] %>
+  <hr>
+  <h3>Mes monuments</h3>
+  <div class="row">
+    <% @monuments.each do |monument| %>
+      <div class="link col-6">
+        <%= link_to monument_path(monument), class: "text-decoration-none link-dark mx-auto mb-3" do %>
+          <div class="card-product">
+            <%= cl_image_tag(monument.photos.first.key, width: 400, height: 300, crop: :fill) %>
+            <div class="card-product-infos">
+              <h2><%= monument.name %></h2>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 <% end %>
