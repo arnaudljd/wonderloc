@@ -1,7 +1,7 @@
 <main class="container my-4">
+  <h1>Booking Details</h1>
   <div class="row">
     <div class="col-lg-8">
-      <h1>Booking Details</h1>
       <div class="card mb-4">
         <% @booking.monument.photos.each do |photo| %>
           <%= cl_image_tag(photo.key, width: 400, height: 300, crop: :fill) %>
@@ -22,7 +22,7 @@
               <strong>Check-out:</strong> <%= @booking.end_date %>
             </li>
             <li class="list-group-item">
-              <strong>Total Price:</strong> <%= @booking.total_price %> €
+              <strong>Total Price:</strong> <%= @booking.total_price %> $
             </li>
           </ul>
         </div>
@@ -43,10 +43,20 @@
           </ul>
         </div>
       </div>
+      <div>
+        <div data-controller="toggle">
+          <button data-action="click->toggle#fire" class="btn btn-primary mt-3">Edit your booking</button>
+          <% if @booking.errors.any? %>
+            <div data-toggle-target="togglableElement" class="my-2">
+              <%= render "form_edit", booking: @booking %>
+            </div>
+          <% else %>
+            <div data-toggle-target="togglableElement" class="d-none my-2">
+              <%= render "form_edit", booking: @booking %>
+            </div>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
 </main>
-
-<footer class="bg-light text-center py-3">
-  <p>&copy; 2023 Wonderloc. All rights reserved.</p>
-</footer>

@@ -42,11 +42,11 @@
         <div data-controller="toggle">
           <button data-action="click->toggle#fire" class="btn btn-primary mt-3 col-3">Book</button>
           <% if @booking.errors.any? %>
-            <div data-toggle-target="togglableElement">
+            <div data-toggle-target="togglableElement" class="my-3">
               <%= render "shared/form", monument: @monument, booking: @booking %>
             </div>
           <% else %>
-            <div data-toggle-target="togglableElement" class="d-none">
+            <div data-toggle-target="togglableElement" class="d-none my-3">
               <%= render "shared/form", monument: @monument, booking: @booking %>
             </div>
           <% end %>
