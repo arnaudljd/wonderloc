@@ -1,14 +1,13 @@
-<div data-controller="">
+<div data-controller="pin-card-hover">
   <div class="row">
     <div class="col-8">
       <div class="cards">
         <% @monuments.each do |monument| %>
           <%= link_to monument_path(monument), class: "text-decoration-none link-dark mb-3" do %>
-            <div class="card-monument">
+            <div class="card-monument" data-map-target="cardElement" data-action="mouseover->pin-card-hover#hover mouseout->pin-card-hover#hoverout" data-monument="<%= monument.id %>">
               <% monument.photos.each do |photo| %>
-                  <%= cl_image_tag(photo.key, width: 400, height: 300, crop: :fill, class: "rounded-4") %>
-                <% end %>
-
+                <%= cl_image_tag(photo.key, width: 400, height: 300, crop: :fill, class: "rounded-4") %>
+              <% end %>
               <div class="card-monument-infos">
                 <div class="row">
                   <div class="d-flex flex-column">
