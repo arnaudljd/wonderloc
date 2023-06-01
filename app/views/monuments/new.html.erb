@@ -4,9 +4,7 @@
   <%= m.input :photos, as: :file, input_html: { multiple: true } %>
   <%= m.input :price %>
   <%= m.input :description %>
-  <%= m.input :country, as: :select, collection: @countries %>
-  <%= m.input :city %>
-  <%= m.input :address_details %>
+  <%= m.input :address %>
   <%= m.submit %>
 <% end %>
 <p><%= link_to 'Back to list', monuments_path %></p>
