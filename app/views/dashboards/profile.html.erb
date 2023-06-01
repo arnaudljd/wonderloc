@@ -14,7 +14,7 @@
             <div>
               <h2><%= booking.monument.name %></h2>
               <p><%= booking.start_date %> au <%= booking.end_date %></p>
-              <p><%= booking.total_price %> €</p>
+              <p><%= booking.total_price %> $</p>
             </div>
             <% if booking.status == 'Accepted' %>
               <span class="badge bg-success">Accepted</span>
@@ -40,12 +40,24 @@
     <% @demands.each do |demand| %>
       <div class="link col-6">
         <%#= link_to monument_path(monument), class: "text-decoration-none link-dark mx-auto mb-3" do %>
-          <div class="card-product">
-            <%#= cl_image_tag(demands.monument.photos.first.key, width: 400, height: 300, crop: :fill) %>
+          <div class="card-product" class="btn btn-sm btn-outline-warning" data-bs-toggle="modal" data-bs-target="#statusModal<%= demand.id %>">
+            <%= cl_image_tag(demand.monument.photos.first.key, width: 400, height: 300, crop: :fill) %>
             <div class="card-product-infos">
               <h2><%= demand.monument.name %></h2>
               <p><%= demand.start_date %> au <%= demand.end_date %></p>
               <p><%= demand.user.username %></p>
+              <div data-controller="validation">
+                <% if demand.status == 'Accepted' %>
+                  <span class="badge bg-success">Accepted</span>
+                <% elsif demand.status == 'Pending' %>
+                  <span class="badge bg-warning">Pending</span>
+                <% else %>
+                  <span class="badge bg-danger">Rejected</span>
+                <% end %>
+                  <div data-toggle-target="validationElement">
+                    <%= render "shared/modal", demand: demand %>
+                  </div>
+              </div>
             </div>
           </div>
         <%# end %>
@@ -85,7 +97,7 @@
     </div>
     <div class="row">
       <% @monuments.each do |monument| %>
-        <div class="link col-6">
+        <div class="link col-6 mb-3">
           <%= link_to monument_path(monument), class: "text-decoration-none link-dark mx-auto mb-3" do %>
             <div class="card-product">
               <%= cl_image_tag(monument.photos.first.key, width: 400, height: 300, crop: :fill) %>

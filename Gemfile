@@ -57,6 +57,8 @@ gem "faker"
 gem "cloudinary"
 # Search-bar pg_search
 gem "pg_search"
+gem "geocoder"
+
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
