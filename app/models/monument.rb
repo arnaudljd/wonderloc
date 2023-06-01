@@ -11,4 +11,10 @@ class Monument < ApplicationRecord
   validates :city, presence: true
   validates :address_details, presence: true
 
+  include PgSearch::Model
+  pg_search_scope :search_by_name_description_and_address,
+    against: [ :name, :address, :description],
+    using: {
+      tsearch: { prefix: true }
+    }
 end

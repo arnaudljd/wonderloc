@@ -3,7 +3,11 @@ class MonumentsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    @monuments = Monument.all
+    if params[:query].present?
+      @monuments = Monument.search_by_name_description_and_address(params[:query])
+    else
+      @monuments = Monument.all
+    end
   end
 
   def show
