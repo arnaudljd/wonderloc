@@ -4,10 +4,11 @@ import flatpickr from "flatpickr";
 // Connects to data-controller="datepicker"
 export default class extends Controller {
 
-  static targets = ['start', 'end', 'sub']
+  static targets = ['start', 'end', 'sub', 'price']
 
   static values = {
-    booking: Array
+    booking: Array,
+    monument: Object
   }
 
   connect() {
@@ -62,6 +63,14 @@ export default class extends Controller {
       this.subTarget.disabled = true
     } else {
       this.subTarget.disabled = false
+    }
+  }
+
+  priceCalc() {
+    console.log(this.startTarget.value)
+    console.log(this.endTarget.value)
+    if (this.startTarget.value !== '' && this.endTarget.value !== '')  {
+      this.priceTarget.innerHTML = `<strong>Total price: </strong>${(Date.parse(this.endTarget.value) - Date.parse(this.startTarget.value)) / 86_400_000} night(s) x ${this.monumentValue.price} = <strong>${(Date.parse(this.endTarget.value) - Date.parse(this.startTarget.value)) / 86_400_000 * this.monumentValue.price} $</strong>`
     }
   }
 }

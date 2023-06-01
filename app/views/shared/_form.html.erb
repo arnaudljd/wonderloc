@@ -1,9 +1,14 @@
-<%= simple_form_for [monument, booking], html: { data: { controller: 'datepicker', datepicker_booking_value: monument.bookings.to_json }} do |b| %>
-  <%= b.input :start_date,
-              as: :string,
-              input_html: { data: { datepicker_target: "start", action: "change->datepicker#checkDates change->datepicker#endDate" } } %>
-  <%= b.input :end_date,
-              as: :string,
-              input_html: { data: { datepicker_target: "end", action: "change->datepicker#checkDates change->datepicker#startDate" } } %>
-  <%= b.submit 'Submit', data: { datepicker_target: "sub" } %>
+<%= simple_form_for [monument, booking], html: { data: { controller: 'datepicker', datepicker_booking_value: monument.bookings.to_json, datepicker_monument_value: monument.to_json }} do |b| %>
+  <div class="mt-2">
+    <%= b.input :start_date,
+                as: :string,
+                input_html: { data: { datepicker_target: "start", action: "change->datepicker#checkDates change->datepicker#endDate change->datepicker#priceCalc" } } %>
+    <%= b.input :end_date,
+                as: :string,
+                input_html: { data: { datepicker_target: "end", action: "change->datepicker#checkDates change->datepicker#startDate change->datepicker#priceCalc" } } %>
+    <div class="d-flex justify-content-between align-items-center">
+      <%= b.submit 'Submit', data: { datepicker_target: "sub" } %>
+      <p data-datepicker-target="price"></p>
+    </div>
+  </div>
 <% end %>
