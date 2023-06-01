@@ -1,0 +1,8 @@
+<%= simple_form_for(monument) do |m| %>
+  <%= m.input :name %>
+  <%= m.input :photos, as: :file, input_html: { multiple: true } %>
+  <%= m.input :price %>
+  <%= m.input :description %>
+  <%= m.input :address %>
+  <%= m.submit %>
+<% end %>
