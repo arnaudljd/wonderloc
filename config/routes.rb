@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     resources :reviews, only: ['new', 'create']
   end
 
+  patch '/bookings_accept/:id', to: 'bookings#accepted', as: 'accepted'
+  patch '/bookings_reject/:id', to: 'bookings#rejected', as: 'rejected'
 
   resources :reviews, only: ['destroy']
 end
