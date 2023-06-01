@@ -3,8 +3,12 @@
     <%= link_to "Wonderloc", root_path, class: "navbar-brand" %>
     <div>
       <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button type="button" class="btn btn-outline-success">Search</button>
+        <div class="search-bar d-flex">
+          <%= form_with url: monuments_path, method: :get, class: "d-flex" do %>
+            <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Looking for a monument?"%>
+            <%= submit_tag "Search", class: "btn btn-primary" %>
+          <% end %>
+        </div>
         <div class="ms-2">
           <ul class="navbar-nav me-auto">
             <% if user_signed_in? %>
