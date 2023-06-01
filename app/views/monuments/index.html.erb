@@ -3,9 +3,8 @@
     <%= link_to monument_path(monument), class: "text-decoration-none link-dark mb-3" do %>
       <div class="card-monument">
         <% monument.photos.each do |photo| %>
-            <%= cl_image_tag(photo.key, width: 400, height: 300, crop: :fill, class: "rounded-4") %>
-          <% end %>
-
+          <%= cl_image_tag(photo.key, width: 400, height: 300, crop: :fill, class: "rounded-4") %>
+        <% end %>
         <div class="card-monument-infos">
           <div class="row">
             <div class="d-flex flex-column">
