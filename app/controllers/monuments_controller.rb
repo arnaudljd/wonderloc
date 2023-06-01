@@ -8,6 +8,14 @@ class MonumentsController < ApplicationController
     else
       @monuments = Monument.all
     end
+    @markers = @monuments.geocoded.map do |monument|
+      {
+        lat: monument.latitude,
+        lng: monument.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: { monument: monument }),
+        marker_html: render_to_string(partial: "marker")
+      }
+    end
   end
 
   def show

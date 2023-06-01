@@ -30,6 +30,7 @@
     <div class="row justify-content-between p-2">
       <div class="col-8 mt-3">
         <h1><%= @monument.name %></h1>
+
         <% if @monument.user == current_user %>
           <div class="row justify-content-start mb-3">
             <%= link_to 'Edit', edit_monument_path, class:"btn btn-outline-success col-3 me-3"  %>

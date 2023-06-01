@@ -9,6 +9,7 @@ class BookingsController < ApplicationController
 
   def new
     @booking = Booking.new
+    @monument = Monument.find(params[:monument_id])
   end
 
   def create
