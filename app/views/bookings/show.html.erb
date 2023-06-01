@@ -1,1 +1,52 @@
-<h1>Show de booking</h1>
+<main class="container my-4">
+  <div class="row">
+    <div class="col-lg-8">
+      <h1>Booking Details</h1>
+      <div class="card mb-4">
+        <% @booking.monument.photos.each do |photo| %>
+          <%= cl_image_tag(photo.key, width: 400, height: 300, crop: :fill) %>
+        <% end %>
+        <div class="card-body">
+          <h5 class="card-title"><%= @booking.monument.name %></h5>
+          <p class="card-text"><%= @booking.monument.description %></p>
+        </div>
+      </div>
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title">Booking Information</h5>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <strong>Check-in:</strong> <%= @booking.start_date %>
+            </li>
+            <li class="list-group-item">
+              <strong>Check-out:</strong> <%= @booking.end_date %>
+            </li>
+            <li class="list-group-item">
+              <strong>Total Price:</strong> <%= @booking.total_price %> €
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Host Information</h5>
+          <p class="card-text">Contact the host for any inquiries or assistance.</p>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <strong>Name:</strong> <%= @booking.monument.user.first_name %> <%= @booking.monument.user.last_name %>
+            </li>
+            <li class="list-group-item">
+              <strong>Email:</strong> <%= @booking.monument.user.email %>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="bg-light text-center py-3">
+  <p>&copy; 2023 Wonderloc. All rights reserved.</p>
+</footer>

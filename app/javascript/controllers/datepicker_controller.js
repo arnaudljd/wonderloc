@@ -12,8 +12,8 @@ export default class extends Controller {
 
   connect() {
     flatpickr(this.startTarget, {
-        minDate: "today",
-        disable: this.#dateBooked()
+      minDate: "today",
+      disable: this.#dateBooked()
     })
 
     flatpickr(this.endTarget, {
@@ -25,6 +25,14 @@ export default class extends Controller {
   endDate() {
     flatpickr(this.endTarget, {
       minDate: new Date(Date.parse(this.startTarget.value) + 86_400_000).toISOString().slice(0, 10),
+      disable: this.#dateBooked()
+    })
+  }
+
+  startDate() {
+    flatpickr(this.startTarget, {
+      minDate: "today",
+      maxDate: new Date(Date.parse(this.endTarget.value) - 86_400_000).toISOString().slice(0, 10),
       disable: this.#dateBooked()
     })
   }
@@ -50,7 +58,7 @@ export default class extends Controller {
         a.push(false)
       }
     })
-    if (a.find(element => element == true) || this.startTarget.value >= this.endTarget.value) {
+    if (a.find(element => element == true)) {
       this.subTarget.disabled = true
     } else {
       this.subTarget.disabled = false
