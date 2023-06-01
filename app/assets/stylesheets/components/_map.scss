@@ -6,3 +6,19 @@
   text-align: center;
   font-family: "Open Sans", sans-serif;
 }
+
+.custom-marker {
+  height: 30px;
+  width: 30px;
+  background-image: url("pin.png");
+  background-size: contain;
+  background-position: center;
+  transition: all ease-in-out 0.3s;
+}
+
+.mapboxgl-canvas-container {
+  .custom-marker:hover {
+    background-image: url("pin-red.png");
+    transform: scale(1.1);
+  }
+}
