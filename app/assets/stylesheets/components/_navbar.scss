@@ -1,16 +1,12 @@
 .navbar {
   padding-top: 0px;
-}
+  margin-bottom: 2.5em;
 
-.navbar-lewagon {
-  justify-content: space-between;
-  background: white;
-}
+  .navbar-collapse {
+    flex-grow: 0;
+  }
 
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
-}
-
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
+  .navbar-brand img {
+    width: 40px;
+  }
 }
