@@ -1,10 +1,16 @@
-<h2>Add a monument</h2>
-<%= simple_form_for(@monument) do |m| %>
-  <%= m.input :name %>
-  <%= m.input :photos, as: :file, input_html: { multiple: true } %>
-  <%= m.input :price %>
-  <%= m.input :description %>
-  <%= m.input :address %>
-  <%= m.submit %>
-<% end %>
-<p><%= link_to 'Back to list', monuments_path %></p>
+<div class="d-flex justify-content-center">
+  <div class="d-flex flex-column mb-3">
+    <h2>New monument</h2>
+    <div class="input-group d-flex">
+      <%= simple_form_for(@monument) do |m| %>
+        <%= m.input :name %>
+        <%= m.input :photos, as: :file, input_html: { multiple: true } %>
+        <%= m.input :price %>
+        <%= m.input :description %>
+        <%= m.input :address %>
+        <%= m.submit %>
+      <% end %>
+    </div>
+      <button type="button" class="btn mt-3"><%= link_to 'Back to list', monuments_path %></button>
+  </div>
+</div>
