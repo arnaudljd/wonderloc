@@ -1,6 +1,6 @@
 .card-monument {
   overflow: hidden;
-  background: transparent;
+  background: transparent !important;
 
   img {
     height: 300px;
@@ -20,7 +20,7 @@
   }
 
   .card-monument-infos {
-    padding: 16px;
+    padding: 10px;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
@@ -31,6 +31,6 @@
   .card-monument-pricing{
     position: absolute;
     bottom: 0;
-    right: 0;
+    left: 0;
   }
 }
