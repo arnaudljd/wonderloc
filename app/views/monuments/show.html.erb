@@ -8,22 +8,13 @@
       </div>
       <% if @monument.photos != nil %>
         <div class="carousel-inner">
-          <div class="carousel-item active">
             <% @monument.photos.each do |photo| %>
-              <%= cl_image_tag(photo.key, width: 400, height: 300, crop: :fill) %>
-            <% end %>
+          <div class="carousel-item active">
+              <%= cl_image_tag(photo.key, width: 750, height: 300, crop: :fill) %>
           </div>
+            <% end %>
       <% end %>
-      <%# if @monument.picture.length = 2 %>
-          <%# <div class="carousel-item"> %>
-            <%# <img src="" class="d-block w-100" alt="..."> %>
-          <%# </div> %>
-      <%# end %>
-      <%# if @monument.picture.length = 3 %>
-          <%# <div class="carousel-item"> %>
-            <%# <img src="" class="d-block w-100" alt="..."> %>
-          <%# </div> %>
-      <%# end %>
+
         </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -39,18 +30,26 @@
     <div class="row justify-content-between p-2">
       <div class="col-8 mt-3">
         <h1><%= @monument.name %></h1>
-        <div data-controller="toggle">
-          <button data-action="click->toggle#fire" class="btn btn-primary mt-3 col-3">Book</button>
-          <% if @booking.errors.any? %>
-            <div data-toggle-target="togglableElement">
-              <%= render "shared/form", monument: @monument, booking: @booking %>
-            </div>
-          <% else %>
-            <div data-toggle-target="togglableElement" class="d-none">
-              <%= render "shared/form", monument: @monument, booking: @booking %>
-            </div>
-          <% end %>
-        </div>
+
+        <% if @monument.user == current_user %>
+          <div class="row justify-content-start mb-3">
+            <%= link_to 'Edit', edit_monument_path, class:"btn btn-outline-success col-3 me-3"  %>
+            <%= link_to 'Delete', monument_path(@monument), class:"btn btn-outline-danger col-3", data:{ turbo_method:'delete', turbo_confirm:"You are about to delete this monument. Do you want to continu?"}  %>
+          </div>
+        <% else %>
+          <div data-controller="toggle" class="mb-3">
+            <button data-action="click->toggle#fire" class="btn btn-primary mt-3 col-3">Book</button>
+            <% if @booking.errors.any? %>
+              <div data-toggle-target="togglableElement">
+                <%= render "shared/form", monument: @monument, booking: @booking %>
+              </div>
+            <% else %>
+              <div data-toggle-target="togglableElement" class="d-none">
+                <%= render "shared/form", monument: @monument, booking: @booking %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
         <p><%= @monument.description %></p>
       </div>
       <div class="col-3 m-1 pt-2 border border-secondary rounded text-end ">
@@ -64,7 +63,7 @@
 
 <%# avatar, username, address and availability %>
   <div class="col-3 border border-secondary mb-3 rounded">
-      <div class="col-4 text-center mt-3">
+      <div class="text-center mt-3">
         <% if @monument.user.photo != nil %>
           <%= cl_image_tag(@monument.user.photo.key, class:"avatar") %>
         <% else %>

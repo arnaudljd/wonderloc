@@ -41,7 +41,10 @@ class MonumentsController < ApplicationController
   end
 
   def update
-    if @monument.update(monument_params)
+    if params[:monument][:photos].length <= 1
+      @monument.update(monument_params_update)
+      redirect_to @monument, notice: "Monument was successfully updated."
+    elsif @monument.update(monument_params)
       redirect_to @monument, notice: "Monument was successfully updated."
     else
       render :edit, status: :unprocessable_entity
@@ -61,5 +64,9 @@ class MonumentsController < ApplicationController
 
   def monument_params
     params.require(:monument).permit(:name, :picture, :price, :description, :address, :availability, photos: [])
+  end
+
+  def monument_params_update
+    params.require(:monument).permit(:name, :picture, :price, :description, :address, :availability)
   end
 end
