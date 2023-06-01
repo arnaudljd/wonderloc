@@ -9,4 +9,10 @@ class Monument < ApplicationRecord
   validates :price, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validates :address, presence: true
 
+  include PgSearch::Model
+  pg_search_scope :search_by_name_description_and_address,
+    against: [ :name, :address, :description],
+    using: {
+      tsearch: { prefix: true }
+    }
 end
