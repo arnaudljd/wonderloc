@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :set_booking, only: [:show, :edit, :update]
+  before_action :set_booking, only: [:show, :edit, :update, :accepted, :rejected]
 
   def index
   end
@@ -34,6 +34,24 @@ class BookingsController < ApplicationController
       redirect_to @booking, notice: "booking was successfully updated."
     else
       render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def accepted
+    @booking.status = 'Accepted'
+    if @booking.save
+      redirect_to dashboard_path(current_user)
+    else
+      render 'dashboards/profile', status: :unprocessable_entity
+    end
+  end
+
+  def rejected
+    @booking.status = 'Rejected'
+    if @booking.save
+      redirect_to dashboard_path(current_user)
+    else
+      render 'dashboards/profile', status: :unprocessable_entity
     end
   end
 

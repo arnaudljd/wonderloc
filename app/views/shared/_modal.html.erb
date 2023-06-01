@@ -1,0 +1,26 @@
+<div class="modal fade" id="statusModal<%= demand.id %>" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><%= demand.monument.name %></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body row">
+        <div class="justify-content-between"></div>
+          <div class="col-6">
+            <p>from <%= demand.start_date %> to <%= demand.end_date %></p>
+            <p><%= demand.user.username %></p>
+            <p><%= demand.total_price %> $</p>
+          </div>
+          <div class="col-4 text-end">
+            <%= cl_image_tag(demand.user.photo.key, class:"avatar-sm") %>
+            <p><%= demand.user.first_name %> <%= demand.user.last_name %></p>
+          </div>
+      </div>
+      <div class="modal-footer mt-3">
+      <%= link_to 'Accept', accepted_path(demand), class: 'btn btn-outline-success', data: {turbo_method: 'PATCH'} %>
+      <%= link_to 'Reject', rejected_path(demand), class: 'btn btn-outline-danger', data: {turbo_method: 'PATCH'} %>
+      </div>
+    </div>
+  </div>
+</div>
