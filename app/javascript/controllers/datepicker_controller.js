@@ -58,7 +58,7 @@ export default class extends Controller {
         a.push(false)
       }
     })
-    if (a.find(element => element == true)) {
+    if (a.find(element => element === true) || this.startTarget.value >= this.endTarget.value) {
       this.subTarget.disabled = true
     } else {
       this.subTarget.disabled = false

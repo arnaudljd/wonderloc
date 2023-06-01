@@ -7,7 +7,6 @@
             <% monument.photos.each do |photo| %>
                 <%= cl_image_tag(photo.key, width: 400, height: 300, crop: :fill, class: "rounded-4") %>
               <% end %>
-
             <div class="card-monument-infos">
               <div class="row">
                 <div class="d-flex flex-column">
