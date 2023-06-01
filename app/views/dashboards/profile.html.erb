@@ -5,9 +5,11 @@
 <% if @future_bookings != []%>
   <% @future_bookings.each do |booking| %>
     <% if booking.start_date >= Date.today %>
-      <%= link_to monument_path(booking.monument_id), class: "text-decoration-none link-dark mb-3" do %>
+      <%= link_to booking_path(booking), class: "text-decoration-none link-dark mb-3" do %>
         <div class="card-product mb-3">
-          <%= cl_image_tag(booking.monument.photos.first.key, width: 400, height: 300, crop: :fill) %>
+          <% booking.monument.photos.each do |photo| %>
+            <%= cl_image_tag(photo.key, width: 400, height: 300, crop: :fill) %>
+          <% end %>
           <div class="card-product-infos">
             <div>
               <h2><%= booking.monument.name %></h2>
@@ -59,7 +61,7 @@
     <% @passed_bookings.each do |booking| %>
         <% if booking.end_date < Date.today %>
         <div class="link col-6">
-          <%= link_to monument_path(booking.monument_id), class: "text-decoration-none link-dark mx-auto mb-3" do %>
+          <%= link_to booking_path(booking), class: "text-decoration-none link-dark mx-auto mb-3" do %>
           <div class="card-product" >
             <%= cl_image_tag(booking.monument.photos.first.key, width: 400, height: 300, crop: :fill) %>
             <div class="card-product-infos">

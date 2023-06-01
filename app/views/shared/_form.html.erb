@@ -1,9 +1,9 @@
 <%= simple_form_for [monument, booking], html: { data: { controller: 'datepicker', datepicker_booking_value: monument.bookings.to_json }} do |b| %>
   <%= b.input :start_date,
               as: :string,
-              input_html: { data: { datepicker_target: "start", action: "change->datepicker#checkDates" } } %>
+              input_html: { data: { datepicker_target: "start", action: "change->datepicker#checkDates change->datepicker#endDate" } } %>
   <%= b.input :end_date,
               as: :string,
-              input_html: { data: { datepicker_target: "end", action: "change->datepicker#checkDates" } } %>
+              input_html: { data: { datepicker_target: "end", action: "change->datepicker#checkDates change->datepicker#startDate" } } %>
   <%= b.submit 'Submit', data: { datepicker_target: "sub" } %>
 <% end %>
