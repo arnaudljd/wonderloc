@@ -1,6 +1,6 @@
 <div class="row">
   <div class="d-flex justify-content-between">
-    <div class="col-8 border border-secondary rounded me-3 ">
+    <div class="col-8 rounded-4 me-3 ">
       <div id="carouselExampleIndicators" class="carousel slide ">
         <div class="carousel-indicators">
           <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -8,10 +8,10 @@
           <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
         </div>
         <% if @monument.photos != nil %>
-          <div class="carousel-inner">
+          <div class="carousel-inner rounded-4">
               <% @monument.photos.each do |photo| %>
             <div class="carousel-item active">
-                <%= cl_image_tag(photo.key, width: 750, height: 300, crop: :fill) %>
+                <%= cl_image_tag(photo.key, width: 900, height: 300, crop: :fill) %>
             </div>
               <% end %>
         <% end %>
@@ -28,10 +28,11 @@
       </div>
 
       <div class="container">
-        <div class="row justify-content-between p-2">
-          <div class="col-8 px-0">
+        <div class="row justify-content-between bg-secondary bg-gradient rounded-4 p-2 mt-3">
+          <div class="col-7 px-0 ms-2">
             <h1><%= @monument.name %></h1>
-            <p class="me-5"><%= @monument.description %></p>
+            <p><strong>Address:</strong> <%= @monument.address %></p>
+            <p class="me-6"><%= @monument.description %></p>
             <% if @monument.user == current_user %>
               <div class="row justify-content-start mb-3">
                 <%= link_to 'Edit', edit_monument_path, class:"btn btn-outline-success col-3 mx-3"  %>
@@ -39,31 +40,32 @@
               </div>
             <% end %>
           </div>
-          <div class="col-4 border border-secondary rounded">
-            <div class="d-flex justify-content-between mt-3">
-              <p>⭐️ <%= @monument.rate %></p>
-              <p><%= @monument.price %> $ / night</p>
-            </div>
-            <div data-controller="toggle" class="d-grid mb-3">
-              <button data-action="click->toggle#fire" class="btn btn-primary mt-1">Book</button>
-              <% if @booking.errors.any? %>
-                <div data-toggle-target="togglableElement">
-                  <%= render "shared/form", monument: @monument, booking: @booking %>
-                </div>
-              <% else %>
-                <div data-toggle-target="togglableElement" class="d-none">
-                  <%= render "shared/form", monument: @monument, booking: @booking %>
-                </div>
-              <% end %>
+          <div class="col-4">
+            <div class="shadow p-3 pb-2 mb-1 rounded-4 mt-2 px-2" id="book-form">
+              <div class="d-flex justify-content-between pt-3">
+                <p>⭐️ <%= @monument.rate %></p>
+                <p><%= @monument.price %> $ / night</p>
+              </div>
+              <div data-controller="toggle" class="d-grid mb-3">
+                <button data-action="click->toggle#fire" class="btn btn-primary mt-1">Book</button>
+                <% if @booking.errors.any? %>
+                  <div data-toggle-target="togglableElement">
+                    <%= render "shared/form", monument: @monument, booking: @booking %>
+                  </div>
+                <% else %>
+                  <div data-toggle-target="togglableElement" class="d-none">
+                    <%= render "shared/form", monument: @monument, booking: @booking %>
+                  </div>
+                <% end %>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-  <%# avatar, username, address and availability %>
     <div class="col-3">
-      <div class="border border-secondary mb-5 rounded">
+      <div class="bg-secondary mb-5 rounded-4 py-2">
         <div class="text-center mt-3">
           <% if @monument.user.photo != nil %>
             <%= cl_image_tag(@monument.user.photo.key, class:"avatar") %>
@@ -71,10 +73,6 @@
             <i class="fa-solid fa-user avatar"></i>
           <% end %>
           <h6 class='mt-2'><strong><%= @monument.user.username %></strong></h6>
-        </div>
-        <hr>
-        <div class="col-9">
-          <p class="mx-3"><%= @monument.address %></p>
         </div>
       </div>
       <div>

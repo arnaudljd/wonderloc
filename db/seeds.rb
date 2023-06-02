@@ -3,6 +3,7 @@ require "open-uri"
 puts 'cleaning the DB'
 User.destroy_all
 Monument.destroy_all
+Booking.destroy_all
 
 puts 'creating the new DB'
 
@@ -105,29 +106,11 @@ puts 'creating the new DB'
 
 puts "#{User.all.length} users created"
 
-# 10.times do
-#   monu = Monument.create!(
-#     name: Faker::Mountain.name,
-#     picture: 'https://picsum.photos/750/300',
-#     price: rand(1_000..1_000_000),
-#     country: Faker::Address.country,
-#     city: Faker::Address.city,
-#     address_details: Faker::Address.street_address,
-#     user_id: User.all.sample.id,
-#     description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries",
-#     rate: rand(1..5)
-#   )
-#   file = URI.open(monu.picture)
-
-#   monu.photos.attach(io: file, filename: File.basename(monu.picture))
-# end
-
-
 monu = Monument.create!(
   name: "Great Pyramid of Giza",
   picture: "https://upload.wikimedia.org/wikipedia/commons/e/e3/Kheops-Pyramid.jpg",
   price: rand(1_000..1_000_000),
-  address: "Somewhere in the desert",
+  address: "Gizeh, Egypte",
   user_id: User.all.sample.id,
   description: "The Great Pyramid of Giza is the largest Egyptian pyramid and the tomb of Fourth Dynasty pharaoh Khufu. Built in the early 26th century BC during a period of around 27 years, the pyramid is the oldest of the Seven Wonders of the Ancient World, and the only one to remain largely intact.",
   rate: rand(1..5)
@@ -141,7 +124,7 @@ monu = Monument.create!(
   name: "Great wall of china",
   picture: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/The_Great_Wall_of_China_at_Jinshanling-edit.jpg/2560px-The_Great_Wall_of_China_at_Jinshanling-edit.jpg",
   price: rand(1_000..1_000_000),
-  address: "China mountains",
+  address: "Pekin, Chine",
   user_id: User.all.sample.id,
   description: "The Great Wall of China is a series of fortifications that were built across the historical northern borders of ancient Chinese states and Imperial China",
   rate: rand(1..5)
@@ -167,7 +150,7 @@ monu = Monument.create!(
   name: "Palace of Versailles",
   picture: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Chateau_Versailles_Galerie_des_Glaces.jpg/2560px-Chateau_Versailles_Galerie_des_Glaces.jpg",
   price: rand(1_000..1_000_000),
-  address: "Fancy french gardens",
+  address: "Versailles, France",
   user_id: User.all.sample.id,
   description: "Royal residence built by King Louis XIV located in Versailles, about 19 kilometers (12 mi) west of Paris, France. About 15,000,000 people visit the palace, park, or gardens of Versailles every year, making it one of the most popular tourist attractions in the world.",
   rate: rand(1..5)
@@ -180,7 +163,7 @@ monu = Monument.create!(
   name: "Las Ventas",
   picture: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Redondel-las_ventas.jpg/2560px-Redondel-las_ventas.jpg",
   price: rand(1_000..1_000_000),
-  address: "Plaza 1",
+  address: "Madrid, Espagne",
   user_id: User.all.sample.id,
   description: "The Plaza de Toros de Las Ventas, known simply as Las Ventas, is the largest bullfighting ring in Spain, located in the Guindalera quarter of the Salamanca district of Madrid. It was inaugurated on June 17, 1931. Its seating capacity of 23,798, makes it the third-largest bullfighting run in the world, after bullrings in Mexico and Venezuela, respectively.",
   rate: rand(1..5)
@@ -193,7 +176,7 @@ monu = Monument.create!(
   name: "Christ the Redeemer",
   picture: "https://www.francebleu.fr/s3/cruiser-production/2021/08/768d3dae-1c70-4149-bafc-7d1eb0cf4793/1200x680_000_9ll6ky.jpg",
   price: rand(1_000..1_000_000),
-  address: "Corcovado mountain",
+  address: "Copacabana, Bresil",
   user_id: User.all.sample.id,
   description: "Christ The Redeemer is an Art Deco statue of Jesus Christ in Rio de Janeiro, Brazil, created by French sculptor Paul Landowski and built by Brazilian engineer Heitor da Silva Costa, in collaboration with French engineer Albert Caquot. Romanian sculptor Gheorghe Leonida sculpted the face.",
   rate: rand(1..5)
@@ -232,7 +215,7 @@ monu = Monument.create!(
   name: "Circuit Paul Ricard",
   picture: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Circuit_Paul_Ricard%2C_April_22%2C_2018_SkySat_%28cropped%29.jpg/500px-Circuit_Paul_Ricard%2C_April_22%2C_2018_SkySat_%28cropped%29.jpg",
   price: rand(1_000..1_000_000),
-  address: "French Riviera",
+  address: "Le castellet, France",
   user_id: User.all.sample.id,
   description: "The Circuit Paul Ricard (French pronunciation: ​[siʁkɥi pɔl ʁikaʁ]) is a French motorsport race track built in 1969 at Le Castellet, Var, near Marseille, with finance from pastis magnate Paul Ricard. Ricard wanted to experience the challenge of building a racetrack. The circuit has hosted the FIA Formula One French Grand Prix intermittently from 1971 to 2022.",
   rate: rand(1..5)
@@ -245,7 +228,7 @@ monu = Monument.create!(
   name: "Santiago Bernabéu Stadium",
   picture: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Panoramic_santiago_bernabeu.jpg/520px-Panoramic_santiago_bernabeu.jpg",
   price: rand(1_000..1_000_000),
-  address: "Charmartín",
+  address: "Madrid, Espagne",
   user_id: User.all.sample.id,
   description: "The Santiago Bernabéu Stadium (Spanish: Estadio Santiago Bernabéu, is a football stadium in Madrid, Spain. With a current seating capacity of 81,044, it has the second-largest capacity in Spain,[5] and it has been the home stadium of Real Madrid since its completion in 1947.",
   rate: rand(1..5)
@@ -254,5 +237,54 @@ file = URI.open(monu.picture)
 
 monu.photos.attach(io: file, filename: File.basename(monu.picture))
 
+monu = Monument.create!(
+  name: "Parc des Princes",
+  picture: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Paris_Parc_des_Princes_1.jpg/460px-Paris_Parc_des_Princes_1.jpg",
+  price: rand(1_000..1_000_000),
+  address: "rue du Commandant Guilbaud, Paris",
+  user_id: User.all.sample.id,
+  description: "Le stade du Parc des Princes ou plus simplement le Parc des Princes est un stade situé depuis 1897 dans le sud-ouest de la ville de Paris, dans le 16e arrondissement de Paris puis dans sa forme actuelle sur le périphérique parisien depuis 1972. Constituant le plus important stade français depuis cette date jusqu'en 1998, sa capacité de 48 583 places en fait aujourd'hui le cinquième plus grand stade français, mais toujours l'un des plus anciens et des plus connus, sinon le plus connu de la région parisienne avec le Stade de France",
+  rate: rand(1..5)
+)
+file = URI.open(monu.picture)
+
+monu.photos.attach(io: file, filename: File.basename(monu.picture))
+
 puts "#{Monument.all.length} monuments created"
+
+puts "creating accepted passed bookings"
+50.times do
+  date_rand = Date.today - rand(1000)
+  end_date_rand = date_rand + rand(1..15)
+
+  Booking.create!(
+    start_date: date_rand,
+    end_date: end_date_rand,
+    booked_at: (date_rand - 15),
+    status: "Accepted",
+    total_price: rand(1_000..1_000_000) * (end_date_rand - date_rand),
+    monument_id: Monument.all.sample.id,
+    user_id: User.all.sample.id
+  )
+end
+
+puts "creating rejected passed bookings"
+15.times do
+
+  date_rand = Date.today - rand(1000)
+  end_date_rand = date_rand + rand(1..15)
+
+  Booking.create!(
+    start_date: date_rand,
+    end_date: end_date_rand,
+    booked_at: (date_rand - 15),
+    status: "Rejected",
+    total_price: rand(1_000..1_000_000) * (end_date_rand - date_rand),
+    monument_id: Monument.all.sample.id,
+    user_id: User.all.sample.id
+  )
+end
+
+puts "#{Booking.all.length} bookings created"
+
 puts "Seed finished!"
