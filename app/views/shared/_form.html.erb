@@ -1,24 +1,14 @@
-<div class="mt-3">
-  <%= simple_form_for [monument, booking], html: { data: { controller: 'datepicker', datepicker_booking_value: monument.bookings.to_json, datepicker_monument_value: monument.to_json }} do |b| %>
-    <div class="mt-2">
-      <div class="d-flex">
-        <div class="me-1">
-          <%= b.input :start_date,
-                      label: "Arrival",
-                      as: :string,
-                      input_html: { data: { datepicker_target: "start", action: "change->datepicker#checkDates change->datepicker#endDate change->datepicker#priceCalc" } } %>
-        </div>
-        <div>
-          <%= b.input :end_date,
-                      label: "Departure",
-                      as: :string,
-                      input_html: { data: { datepicker_target: "end", action: "change->datepicker#checkDates change->datepicker#startDate change->datepicker#priceCalc" } } %>
-        </div>
-      </div>
-      <div class="d-flex justify-content-between align-items-center">
-        <%= b.submit 'Submit', data: { datepicker_target: "sub" } %>
-      </div>
+<%= simple_form_for [monument, booking], html: { data: { controller: 'datepicker', datepicker_booking_value: monument.bookings.to_json, datepicker_monument_value: monument.to_json }} do |b| %>
+  <div class="mt-2">
+    <%= b.input :start_date,
+                as: :string,
+                input_html: { data: { datepicker_target: "start", action: "change->datepicker#checkDates change->datepicker#endDate change->datepicker#priceCalc" } } %>
+    <%= b.input :end_date,
+                as: :string,
+                input_html: { data: { datepicker_target: "end", action: "change->datepicker#checkDates change->datepicker#startDate change->datepicker#priceCalc" } } %>
+    <div class="d-flex justify-content-between align-items-center">
+      <%= b.submit 'Submit', data: { datepicker_target: "sub" } %>
+      <p data-datepicker-target="price"></p>
     </div>
-    <p data-datepicker-target="price"></p>
-  <% end %>
-</div>
+  </div>
+<% end %>
