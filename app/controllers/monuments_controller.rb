@@ -21,6 +21,17 @@ class MonumentsController < ApplicationController
   def show
     @booking = Booking.new
     @booking.monument = @monument
+    if @monument.name
+      @monuments = Monument.search_by_name_description_and_address(@monument.name)
+    end
+    @markers = @monuments.geocoded.map do |monument|
+      {
+        lat: monument.latitude,
+        lng: monument.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: { monument: monument }),
+        marker_html: render_to_string(partial: "marker", locals: { monument_id: monument.id })
+      }
+    end
   end
 
   def new
