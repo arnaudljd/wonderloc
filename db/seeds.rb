@@ -6,15 +6,102 @@ Monument.destroy_all
 
 puts 'creating the new DB'
 
-10.times do
-  User.create!(
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name,
-    username: Faker::Internet.username,
-    email: Faker::Internet.email,
-    password: "password"
+  user = User.create!(
+    first_name: "Arnaud",
+    last_name: "Lejade",
+    username: "Lejade4Life",
+    email: "arnaud.lejade@mail.com",
+    password: "password",
+    picture_url: "https://res.cloudinary.com/dlvqpdwiw/image/upload/v1685707434/T02NE0241-U053HV6QHPC-334be9208dc3-512_lfigwi.jpg"
   )
-end
+
+  file = URI.open(user.picture_url)
+  user.photo.attach(io: file, filename: File.basename(user.picture_url))
+
+
+  user = User.create!(
+    first_name: "Javier",
+    last_name: "Alvarez Salvado",
+    username: "ElGuapo",
+    email: "JavierAS@mail.com",
+    password: "password",
+    picture_url: "https://res.cloudinary.com/dlvqpdwiw/image/upload/v1685707402/T02NE0241-U0535M1178C-4cb98cfb4514-512_lxha5a.png"
+  )
+
+  file = URI.open(user.picture_url)
+  user.photo.attach(io: file, filename: File.basename(user.picture_url))
+
+  user = User.create!(
+    first_name: "Youval",
+    last_name: "Akouka",
+    username: "MbappéDuWagon",
+    email: "youval.akouka@mail.com",
+    password: "password",
+    picture_url: "https://res.cloudinary.com/dlvqpdwiw/image/upload/v1685707364/T02NE0241-U053FCDPZ1R-8c0631b61a00-512_njy6od.jpg"
+  )
+
+  file = URI.open(user.picture_url)
+  user.photo.attach(io: file, filename: File.basename(user.picture_url))
+
+  user = User.create!(
+    first_name: "Timothee",
+    last_name: "Regis",
+    username: "SurfingUSA",
+    email: "timothee.regis@mail.com",
+    password: "password",
+    picture_url: "https://res.cloudinary.com/dlvqpdwiw/image/upload/v1685707331/T02NE0241-USA18F3FE-0cf4133d9375-512_o9vzmh.jpg"
+  )
+
+  file = URI.open(user.picture_url)
+  user.photo.attach(io: file, filename: File.basename(user.picture_url))
+
+  user = User.create!(
+    first_name: "Maxime",
+    last_name: "Moreira",
+    username: "MagicMax",
+    email: "mm@mail.com",
+    password: "password",
+    picture_url: "https://res.cloudinary.com/dlvqpdwiw/image/upload/v1685707282/T02NE0241-U053HMT49V1-d45ba989ac22-512_liwfk2.png"
+  )
+
+  file = URI.open(user.picture_url)
+  user.photo.attach(io: file, filename: File.basename(user.picture_url))
+
+  user = User.create!(
+    first_name: "Lenny",
+    last_name: "Sentuc",
+    username: "PigeonChief",
+    email: "lenny.sentuc@mail.com",
+    password: "password",
+    picture_url: "https://res.cloudinary.com/dlvqpdwiw/image/upload/v1685707248/T02NE0241-U053CEK3QCD-e4b276a0ba85-512_shzztp.jpg"
+  )
+
+  file = URI.open(user.picture_url)
+  user.photo.attach(io: file, filename: File.basename(user.picture_url))
+
+  user = User.create!(
+    first_name: "Titouan",
+    last_name: "Hirsch",
+    username: "DGofGoldmannSachs",
+    email: "titouan.hirsch@mail.com",
+    password: "password",
+    picture_url: "https://res.cloudinary.com/dlvqpdwiw/image/upload/v1685707207/T02NE0241-U053KPSBQD8-61e912c5c05b-512_xl3anj.png"
+  )
+
+  file = URI.open(user.picture_url)
+  user.photo.attach(io: file, filename: File.basename(user.picture_url))
+
+  user = User.create!(
+    first_name: "Helene",
+    last_name: "Becquembois",
+    username: "WagonWoman",
+    email: "helene.becquembois@mail.com",
+    password: "password",
+    picture_url: "https://res.cloudinary.com/dlvqpdwiw/image/upload/v1685704693/T02NE0241-U053FG4KRA5-4a55123cc91d-512_hx5ooj.jpg"
+  )
+
+  file = URI.open(user.picture_url)
+  user.photo.attach(io: file, filename: File.basename(user.picture_url))
 
 puts "#{User.all.length} users created"
 
