@@ -8,6 +8,7 @@ export default class extends Controller {
 
   static values = {
     booking: Array,
+    curbooking: Object,
     monument: Object
   }
 
@@ -40,7 +41,13 @@ export default class extends Controller {
 
   #dateBooked() {
     let array = []
-    this.bookingValue.forEach((booking) => {
+    let b = this.bookingValue
+    this.bookingValue.forEach((booking, index) => {
+      if (booking.id === this.curbookingValue.id) {
+        delete b[index]
+      }
+    })
+    b.forEach((booking) => {
       if (booking.status !== 'Rejected') {
         const date = {
           from: booking.start_date,
@@ -54,7 +61,13 @@ export default class extends Controller {
 
   checkDates() {
     let a = []
-    this.bookingValue.forEach((booking) => {
+    let c = this.bookingValue
+    this.bookingValue.forEach((booking, index) => {
+      if (booking.id === this.curbookingValue.id) {
+        delete c[index]
+      }
+    })
+    c.forEach((booking) => {
       if (booking.status !== 'Rejected') {
         if (booking.start_date >= this.startTarget.value && booking.end_date <= this.endTarget.value) {
           a.push(true)
