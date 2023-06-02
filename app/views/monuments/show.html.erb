@@ -11,7 +11,7 @@
           <div class="carousel-inner rounded-4">
               <% @monument.photos.each do |photo| %>
             <div class="carousel-item active">
-                <%= cl_image_tag(photo.key, width: 750, height: 300, crop: :fill) %>
+                <%= cl_image_tag(photo.key, width: 900, height: 300, crop: :fill) %>
             </div>
               <% end %>
         <% end %>
