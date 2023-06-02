@@ -58,7 +58,9 @@
             </div>
           <% end %>
         </div>
+        <% if @booking.status == 'Accepted' && @booking.end_date < Date.today %>
         <%= link_to 'Add a review', new_booking_review_path(@booking), class: "btn btn-primary my-3" %>
+        <% end %>
       </div>
     </div>
   </div>
