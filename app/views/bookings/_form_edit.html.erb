@@ -10,13 +10,3 @@
     <p data-datepicker-target="price" class="mt-2"></p>
   </div>
 <% end %>
-
-<%= simple_form_for (booking), html: { data: { controller: 'datepicker', datepicker_booking_value: booking.monument.bookings.to_json, datepicker_curbooking_value: booking.to_json }} do |b| %>
-  <%= b.input :start_date,
-              as: :string,
-              input_html: { data: { datepicker_target: "start", action: "change->datepicker#checkDates change->datepicker#endDate" } } %>
-  <%= b.input :end_date,
-              as: :string,
-              input_html: { data: { datepicker_target: "end", action: "change->datepicker#checkDates change->datepicker#startDate" } } %>
-  <%= b.submit 'Submit', data: { datepicker_target: "sub" } %>
-<% end %>
