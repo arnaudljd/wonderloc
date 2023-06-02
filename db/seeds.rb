@@ -3,6 +3,7 @@ require "open-uri"
 puts 'cleaning the DB'
 User.destroy_all
 Monument.destroy_all
+Booking.destroy_all
 
 puts 'creating the new DB'
 
@@ -105,24 +106,6 @@ puts 'creating the new DB'
 
 puts "#{User.all.length} users created"
 
-# 10.times do
-#   monu = Monument.create!(
-#     name: Faker::Mountain.name,
-#     picture: 'https://picsum.photos/750/300',
-#     price: rand(1_000..1_000_000),
-#     country: Faker::Address.country,
-#     city: Faker::Address.city,
-#     address_details: Faker::Address.street_address,
-#     user_id: User.all.sample.id,
-#     description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries",
-#     rate: rand(1..5)
-#   )
-#   file = URI.open(monu.picture)
-
-#   monu.photos.attach(io: file, filename: File.basename(monu.picture))
-# end
-
-
 monu = Monument.create!(
   name: "Great Pyramid of Giza",
   picture: "https://upload.wikimedia.org/wikipedia/commons/e/e3/Kheops-Pyramid.jpg",
@@ -141,7 +124,7 @@ monu = Monument.create!(
   name: "Great wall of china",
   picture: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/The_Great_Wall_of_China_at_Jinshanling-edit.jpg/2560px-The_Great_Wall_of_China_at_Jinshanling-edit.jpg",
   price: rand(1_000..1_000_000),
-  address: "China mountains",
+  address: "District de Huairou, Chine, 101406",
   user_id: User.all.sample.id,
   description: "The Great Wall of China is a series of fortifications that were built across the historical northern borders of ancient Chinese states and Imperial China",
   rate: rand(1..5)
@@ -254,5 +237,54 @@ file = URI.open(monu.picture)
 
 monu.photos.attach(io: file, filename: File.basename(monu.picture))
 
+monu = Monument.create!(
+  name: "Parc des Princes",
+  picture: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Paris_Parc_des_Princes_1.jpg/460px-Paris_Parc_des_Princes_1.jpg",
+  price: rand(1_000..1_000_000),
+  address: "rue du Commandant Guilbaud, Paris",
+  user_id: User.all.sample.id,
+  description: "Le stade du Parc des Princes ou plus simplement le Parc des Princes est un stade situé depuis 1897 dans le sud-ouest de la ville de Paris, dans le 16e arrondissement de Paris puis dans sa forme actuelle sur le périphérique parisien depuis 1972. Constituant le plus important stade français depuis cette date jusqu'en 1998, sa capacité de 48 583 places en fait aujourd'hui le cinquième plus grand stade français, mais toujours l'un des plus anciens et des plus connus, sinon le plus connu de la région parisienne avec le Stade de France",
+  rate: rand(1..5)
+)
+file = URI.open(monu.picture)
+
+monu.photos.attach(io: file, filename: File.basename(monu.picture))
+
 puts "#{Monument.all.length} monuments created"
+
+puts "creating accepted passed bookings"
+50.times do
+  date_rand = Date.today - rand(1000)
+  end_date_rand = date_rand + rand(1..15)
+
+  Booking.create!(
+    start_date: date_rand,
+    end_date: end_date_rand,
+    booked_at: (date_rand - 15),
+    status: "Accepted",
+    total_price: rand(1_000..1_000_000) * (end_date_rand - date_rand),
+    monument_id: Monument.all.sample.id,
+    user_id: User.all.sample.id
+  )
+end
+
+puts "creating rejected passed bookings"
+15.times do
+
+  date_rand = Date.today - rand(1000)
+  end_date_rand = date_rand + rand(1..15)
+
+  Booking.create!(
+    start_date: date_rand,
+    end_date: end_date_rand,
+    booked_at: (date_rand - 15),
+    status: "Rejected",
+    total_price: rand(1_000..1_000_000) * (end_date_rand - date_rand),
+    monument_id: Monument.all.sample.id,
+    user_id: User.all.sample.id
+  )
+end
+
+puts "#{Booking.all.length} bookings created"
+
 puts "Seed finished!"
