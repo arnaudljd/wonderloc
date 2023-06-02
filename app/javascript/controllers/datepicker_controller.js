@@ -41,11 +41,13 @@ export default class extends Controller {
   #dateBooked() {
     let array = []
     this.bookingValue.forEach((booking) => {
-      const date = {
-        from: booking.start_date,
-        to: new Date(Date.parse(booking.end_date) - 86_400_000).toISOString().slice(0, 10)
+      if (booking.status !== 'Rejected') {
+        const date = {
+          from: booking.start_date,
+          to: new Date(Date.parse(booking.end_date) - 86_400_000).toISOString().slice(0, 10)
+        }
+        array.push(date)
       }
-      array.push(date)
     })
     return array
   }
@@ -53,10 +55,12 @@ export default class extends Controller {
   checkDates() {
     let a = []
     this.bookingValue.forEach((booking) => {
-      if (booking.start_date >= this.startTarget.value && booking.end_date <= this.endTarget.value) {
-        a.push(true)
-      } else {
-        a.push(false)
+      if (booking.status !== 'Rejected') {
+        if (booking.start_date >= this.startTarget.value && booking.end_date <= this.endTarget.value) {
+          a.push(true)
+        } else {
+          a.push(false)
+        }
       }
     })
     if (a.find(element => element === true) || this.startTarget.value >= this.endTarget.value) {
@@ -67,9 +71,7 @@ export default class extends Controller {
   }
 
   priceCalc() {
-    console.log(this.startTarget.value)
-    console.log(this.endTarget.value)
-    if (this.startTarget.value !== '' && this.endTarget.value !== '')  {
+    if (this.startTarget.value !== '' && this.endTarget.value !== '' && this.startTarget.value < this.endTarget.value)  {
       this.priceTarget.innerHTML = `<strong>Total price: </strong>${(Date.parse(this.endTarget.value) - Date.parse(this.startTarget.value)) / 86_400_000} night(s) x ${this.monumentValue.price} = <strong>${(Date.parse(this.endTarget.value) - Date.parse(this.startTarget.value)) / 86_400_000 * this.monumentValue.price} $</strong>`
     }
   }
