@@ -85,7 +85,27 @@ export default class extends Controller {
 
   priceCalc() {
     if (this.startTarget.value !== '' && this.endTarget.value !== '' && this.startTarget.value < this.endTarget.value)  {
-      this.priceTarget.innerHTML = `<strong>Total price: </strong>${(Date.parse(this.endTarget.value) - Date.parse(this.startTarget.value)) / 86_400_000} night(s) x ${this.monumentValue.price} = <strong>${(Date.parse(this.endTarget.value) - Date.parse(this.startTarget.value)) / 86_400_000 * this.monumentValue.price} $</strong>`
+      this.priceTarget.innerHTML = `
+      <div class="mt-3">
+        <div class="d-flex justify-content-between mb-1">
+          <div>
+            Nights
+          </div>
+          <div>
+            ${(Date.parse(this.endTarget.value) - Date.parse(this.startTarget.value)) / 86_400_000}
+          </div>
+        </div>
+      </div>
+        <div class="d-flex justify-content-between mb-1">
+          <div>
+            Total price
+          </div>
+          <div>
+            <strong>${(Date.parse(this.endTarget.value) - Date.parse(this.startTarget.value)) / 86_400_000 * this.monumentValue.price} $</strong>
+          </div>
+        </div>
+      </div>
+      `
     }
   }
 }
