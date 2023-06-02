@@ -8,7 +8,6 @@ export default class extends Controller {
     const monument_id = event.currentTarget.dataset.monument
     this.pinTargets.forEach(element => {
       if (monument_id === element.id) {
-        console.log("Je rentre")
         element.classList.toggle('red-pin')
       }
     });
@@ -18,7 +17,6 @@ export default class extends Controller {
     const monument_id = event.currentTarget.dataset.monument
     this.pinTargets.forEach(element => {
       if (monument_id === element.id) {
-        console.log("Je sors")
         element.classList.toggle('red-pin')
       }
     });

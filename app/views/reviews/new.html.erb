@@ -3,6 +3,9 @@
 <%= simple_form_for [@booking, @review] do |r| %>
   <%= r.input :content, as: :text %>
   <%= r.input :rating, as: :select, collection: 0..5 %>
-  <%= r.submit 'Submit' %>
+  <div class="d-flex justify-content-between mb-3">
+    <%= r.submit 'Submit' %>
+    <%= link_to 'Back to your booking', booking_path(@booking), class: "btn btn-primary" %>
+  </div>
 <% end %>
 </div>
