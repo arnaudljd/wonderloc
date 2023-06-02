@@ -45,7 +45,9 @@
       </div>
       <div>
         <div data-controller="toggle">
-          <button data-action="click->toggle#fire" class="btn btn-primary mt-3">Edit your booking</button>
+          <% if @booking.status == 'Pending' %>
+            <button data-action="click->toggle#fire" class="btn btn-primary mt-3">Edit your booking</button>
+          <% end %>
           <% if @booking.errors.any? %>
             <div data-toggle-target="togglableElement" class="my-2">
               <%= render "form_edit", booking: @booking %>
