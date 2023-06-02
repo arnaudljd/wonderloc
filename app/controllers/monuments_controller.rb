@@ -13,7 +13,7 @@ class MonumentsController < ApplicationController
         lat: monument.latitude,
         lng: monument.longitude,
         info_window_html: render_to_string(partial: "info_window", locals: { monument: monument }),
-        marker_html: render_to_string(partial: "marker")
+        marker_html: render_to_string(partial: "marker", locals: { monument_id: monument.id })
       }
     end
   end
