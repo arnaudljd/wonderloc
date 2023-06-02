@@ -1,2 +1,12 @@
-<h4><%= monument.name %></h4>
-<p><%= monument.address %></p>
+<div class="geo-card-monument">
+  <div class="geo-card-image">
+    <% monument.photos.each do |photo| %>
+      <%= cl_image_tag(photo.key, width: 100, height: 100, crop: :fill, class: "rounded-2") %>
+    <% end %>
+  </div>
+  <div class="card-product-infos">
+    <h4><%= monument.name %></h4>
+    <p><%= monument.address %></p>
+    <a class="btn btn-flat" href="<%= monument_path(monument) %>">DISCOVER</a>
+  </div>
+</div>
