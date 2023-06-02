@@ -62,7 +62,8 @@
   </div>
 
 <%# avatar, username, address and availability %>
-  <div class="col-3 border border-secondary mb-3 rounded">
+  <div class="col-3">
+    <div class="border border-secondary mb-3 rounded">
       <div class="text-center mt-3">
         <% if @monument.user.photo != nil %>
           <%= cl_image_tag(@monument.user.photo.key, class:"avatar") %>
@@ -73,10 +74,17 @@
       </div>
       <hr>
       <div class="col-9">
-        <p><%= @monument.address %>
+        <p class="mx-3"><%= @monument.address %></p>
       </div>
-
-
+    </div>
+    <div>
+      <div class="map-index" style="width: 100%; height: 600px;"
+        id="map-monument"
+        data-controller="map"
+        data-map-markers-value="<%= @markers.to_json %>"
+        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+      </div>
+    </div>
   </div>
 
   <div class="row justify-content-between p-2">
