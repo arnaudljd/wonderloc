@@ -110,7 +110,7 @@ monu = Monument.create!(
   name: "Great Pyramid of Giza",
   picture: "https://upload.wikimedia.org/wikipedia/commons/e/e3/Kheops-Pyramid.jpg",
   price: rand(1_000..1_000_000),
-  address: "Somewhere in the desert",
+  address: "Gizeh, Egypte",
   user_id: User.all.sample.id,
   description: "The Great Pyramid of Giza is the largest Egyptian pyramid and the tomb of Fourth Dynasty pharaoh Khufu. Built in the early 26th century BC during a period of around 27 years, the pyramid is the oldest of the Seven Wonders of the Ancient World, and the only one to remain largely intact.",
   rate: rand(1..5)
@@ -124,7 +124,7 @@ monu = Monument.create!(
   name: "Great wall of china",
   picture: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/The_Great_Wall_of_China_at_Jinshanling-edit.jpg/2560px-The_Great_Wall_of_China_at_Jinshanling-edit.jpg",
   price: rand(1_000..1_000_000),
-  address: "District de Huairou, Chine, 101406",
+  address: "Pekin, Chine",
   user_id: User.all.sample.id,
   description: "The Great Wall of China is a series of fortifications that were built across the historical northern borders of ancient Chinese states and Imperial China",
   rate: rand(1..5)
@@ -150,7 +150,7 @@ monu = Monument.create!(
   name: "Palace of Versailles",
   picture: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Chateau_Versailles_Galerie_des_Glaces.jpg/2560px-Chateau_Versailles_Galerie_des_Glaces.jpg",
   price: rand(1_000..1_000_000),
-  address: "Fancy french gardens",
+  address: "Versailles, France",
   user_id: User.all.sample.id,
   description: "Royal residence built by King Louis XIV located in Versailles, about 19 kilometers (12 mi) west of Paris, France. About 15,000,000 people visit the palace, park, or gardens of Versailles every year, making it one of the most popular tourist attractions in the world.",
   rate: rand(1..5)
@@ -163,7 +163,7 @@ monu = Monument.create!(
   name: "Las Ventas",
   picture: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Redondel-las_ventas.jpg/2560px-Redondel-las_ventas.jpg",
   price: rand(1_000..1_000_000),
-  address: "Plaza 1",
+  address: "Madrid, Espagne",
   user_id: User.all.sample.id,
   description: "The Plaza de Toros de Las Ventas, known simply as Las Ventas, is the largest bullfighting ring in Spain, located in the Guindalera quarter of the Salamanca district of Madrid. It was inaugurated on June 17, 1931. Its seating capacity of 23,798, makes it the third-largest bullfighting run in the world, after bullrings in Mexico and Venezuela, respectively.",
   rate: rand(1..5)
@@ -176,7 +176,7 @@ monu = Monument.create!(
   name: "Christ the Redeemer",
   picture: "https://www.francebleu.fr/s3/cruiser-production/2021/08/768d3dae-1c70-4149-bafc-7d1eb0cf4793/1200x680_000_9ll6ky.jpg",
   price: rand(1_000..1_000_000),
-  address: "Corcovado mountain",
+  address: "Copacabana, Bresil",
   user_id: User.all.sample.id,
   description: "Christ The Redeemer is an Art Deco statue of Jesus Christ in Rio de Janeiro, Brazil, created by French sculptor Paul Landowski and built by Brazilian engineer Heitor da Silva Costa, in collaboration with French engineer Albert Caquot. Romanian sculptor Gheorghe Leonida sculpted the face.",
   rate: rand(1..5)
@@ -215,7 +215,7 @@ monu = Monument.create!(
   name: "Circuit Paul Ricard",
   picture: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Circuit_Paul_Ricard%2C_April_22%2C_2018_SkySat_%28cropped%29.jpg/500px-Circuit_Paul_Ricard%2C_April_22%2C_2018_SkySat_%28cropped%29.jpg",
   price: rand(1_000..1_000_000),
-  address: "French Riviera",
+  address: "Le castellet, France",
   user_id: User.all.sample.id,
   description: "The Circuit Paul Ricard (French pronunciation: ​[siʁkɥi pɔl ʁikaʁ]) is a French motorsport race track built in 1969 at Le Castellet, Var, near Marseille, with finance from pastis magnate Paul Ricard. Ricard wanted to experience the challenge of building a racetrack. The circuit has hosted the FIA Formula One French Grand Prix intermittently from 1971 to 2022.",
   rate: rand(1..5)
@@ -228,7 +228,7 @@ monu = Monument.create!(
   name: "Santiago Bernabéu Stadium",
   picture: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Panoramic_santiago_bernabeu.jpg/520px-Panoramic_santiago_bernabeu.jpg",
   price: rand(1_000..1_000_000),
-  address: "Charmartín",
+  address: "Madrid, Espagne",
   user_id: User.all.sample.id,
   description: "The Santiago Bernabéu Stadium (Spanish: Estadio Santiago Bernabéu, is a football stadium in Madrid, Spain. With a current seating capacity of 81,044, it has the second-largest capacity in Spain,[5] and it has been the home stadium of Real Madrid since its completion in 1947.",
   rate: rand(1..5)
