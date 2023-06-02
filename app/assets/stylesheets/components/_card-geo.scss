@@ -1,0 +1,43 @@
+.geo-card-monument {
+  overflow: hidden;
+  max-height: 120px;
+  background: white;
+  display: flex;
+  align-items: center;
+}
+
+.geo-card-monument h4 {
+  color: #143495;
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.geo-card-monument p {
+  font-size: 12px;
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 8px;
+  margin-bottom: 4px;
+}
+
+.geo-card-monument .card-product-infos {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.btn-flat {
+  color: #143495;
+  font-size: 12px;
+  color: white;
+  padding: 5px;
+  border-radius: 4px;
+  background: #143495;
+  transition: background 0.3s ease;
+}
+
+.btn-flat:hover {
+  background: #143495;
+  color: white;
+}

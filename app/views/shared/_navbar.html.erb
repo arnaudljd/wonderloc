@@ -1,26 +1,26 @@
 <nav class="navbar navbar-expand-sm navbar-light bg-body-tertiary">
   <div class="container-fluid border-top border-bottom border-1 py-3">
-    <%= link_to "Wonderloc", root_path, class: "navbar-brand" %>
-      <form class="d-flex col-3" role="search">
-          <%= form_with url: monuments_path, method: :get, class: "d-flex" do %>
-            <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Looking for a monument?"%>
-            <%= submit_tag "SEARCH", class: "btn btn-primary" %>
-          <% end %>
-      </form>
-        <div class="ms-2">
-          <ul class="navbar-nav me-auto">
-            <% if user_signed_in? %>
-              <li class="nav-item dropdown">
-                <%= cl_image_tag current_user.photo.key, id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false, class: "avatar dropdown-toggle" %>
-                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                  <%= link_to "My bookings", dashboard_path, class: "dropdown-item" %>
-                  <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
-                </div>
-              </li>
-            <% else %>
-              <li><%= link_to "Login", new_user_session_path, class: "btn btn-outline-dark" %></li>
-            <% end %>
-          </ul>
-        </div>
+    <%= link_to "WonderLoc", root_path, class: "navbar-brand" %>
+    <form class="d-flex col-4" role="search">
+        <%= form_with url: monuments_path, method: :get, class: "d-flex" do %>
+          <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Looking for a monument?"%>
+          <%= submit_tag "SEARCH", class: "btn btn-primary" %>
+        <% end %>
+    </form>
+    <div class="ms-2">
+      <ul class="navbar-nav me-auto">
+        <% if user_signed_in? %>
+          <li class="nav-item dropdown">
+            <%= cl_image_tag current_user.photo.key, id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false, class: "avatar dropdown-toggle" %>
+            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <%= link_to "My bookings", dashboard_path, class: "dropdown-item" %>
+              <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
+            </div>
+          </li>
+        <% else %>
+          <li><%= link_to "Login", new_user_session_path, class: "btn btn-outline-dark" %></li>
+        <% end %>
+      </ul>
+    </div>
   </div>
 </nav>
